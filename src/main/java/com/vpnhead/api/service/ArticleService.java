@@ -1,5 +1,6 @@
 package com.vpnhead.api.service;
 
+import com.vpnhead.api.dto.ArticleDto;
 import com.vpnhead.api.dto.ArticleTitleDTO;
 import com.vpnhead.api.model.Article;
 import com.vpnhead.api.repository.ArticleRepository;
@@ -28,5 +29,9 @@ public class ArticleService {
         return repository.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    public Article createArticle(ArticleDto articleDto) {
+        return new Article("Test Title", "Test Author", "Test Content");
     }
 }
