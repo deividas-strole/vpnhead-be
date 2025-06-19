@@ -17,6 +17,13 @@ public class AdminController {
         this.service = service;
     }
 
+    // GET endpoint for login check — returns 200 OK if authenticated
+    @GetMapping
+    public ResponseEntity<String> checkAuth() {
+        return ResponseEntity.ok("Admin authenticated");
+    }
+
+    // POST endpoint for creating articles
     @PostMapping
     public ResponseEntity<Article> createArticle(@RequestBody ArticleDto articleDto) {
         Article saved = service.createArticle(articleDto);
