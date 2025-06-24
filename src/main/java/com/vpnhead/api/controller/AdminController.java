@@ -23,7 +23,6 @@ public class AdminController {
         return ResponseEntity.ok("Admin authenticated");
     }
 
-    // POST endpoint for creating articles
     @PostMapping
     public ResponseEntity<Article> createArticle(@RequestBody ArticleDto articleDto) {
         Article saved = service.createArticle(articleDto);
