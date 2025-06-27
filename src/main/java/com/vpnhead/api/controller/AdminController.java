@@ -5,6 +5,7 @@ import com.vpnhead.api.model.Article;
 import com.vpnhead.api.repository.ArticleRepository;
 import com.vpnhead.api.service.ArticleService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,18 +21,13 @@ public class AdminController {
         this.articleRepository = articleRepository;
     }
 
-    // GET endpoint for login check — returns 200 OK if authenticated
-    @GetMapping
-    public ResponseEntity<String> checkAuth() {
-        return ResponseEntity.ok("Admin authenticated");
+    // ✅ Optional: A quick check for frontend to confirm token is still valid
+    @GetMapping("/ping")
+    public ResponseEntity<String> ping() {
+        return ResponseEntity.ok("JWT token is valid");
     }
 
-    @PostMapping
-    public ResponseEntity<Article> createArticle(@RequestBody ArticleDto articleDto) {
-        Article saved = service.createArticle(articleDto);
-        return ResponseEntity.ok(saved);
-    }
-
+    // ✅ Save article (JWT required)
     @PostMapping("/save-article")
     public ResponseEntity<Void> saveArticle(@RequestBody ArticleDto dto) {
         if (dto.getTitle() == null || dto.getContent() == null) {
@@ -47,5 +43,10 @@ public class AdminController {
         return ResponseEntity.ok().build();
     }
 
-
+    // ✅ Also available: createArticle endpoint
+    @PostMapping
+    public ResponseEntity<Article> createArticle(@RequestBody ArticleDto articleDto) {
+        Article saved = service.createArticle(articleDto);
+        return ResponseEntity.ok(saved);
+    }
 }
