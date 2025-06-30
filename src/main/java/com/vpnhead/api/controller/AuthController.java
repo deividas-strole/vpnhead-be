@@ -20,7 +20,6 @@ public class AuthController {
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
-    // ✅ This is your login endpoint
     @PostMapping("/login")
     public Map<String, String> login(@RequestBody Map<String, String> credentials) {
         String username = credentials.get("username");
