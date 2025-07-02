@@ -17,6 +17,9 @@ public class Article {
     @Column(columnDefinition = "TEXT")
     private String content;
 
+    @Column(length = 2048)
+    private String imageUrl;
+
     // Constructors
     public Article() {
     }
@@ -58,5 +61,13 @@ public class Article {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

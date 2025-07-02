@@ -32,6 +32,11 @@ public class ArticleService {
     }
 
     public Article createArticle(ArticleDto articleDto) {
-        return new Article("Test Title", "Test Author", "Test Content");
+        Article article = new Article();
+        article.setTitle(articleDto.getTitle());
+        article.setContent(articleDto.getContent());
+        article.setAuthor("Admin");
+        article.setImageUrl(articleDto.getImageUrl());
+        return repository.save(article);
     }
 }
