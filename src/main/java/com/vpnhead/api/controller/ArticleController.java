@@ -40,4 +40,5 @@ public class ArticleController {
         Article article = service.createArticle(articleDto);
         return ResponseEntity.ok(article);
     }
+    
 }
