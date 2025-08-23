@@ -49,5 +49,4 @@ public class AdminController {
         Article saved = service.createArticle(articleDto);
         return ResponseEntity.ok(saved);
     }
-    
 }
