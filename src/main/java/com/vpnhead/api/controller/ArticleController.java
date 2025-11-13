@@ -6,6 +6,7 @@ import com.vpnhead.api.service.ArticleService;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,5 +41,15 @@ public class ArticleController {
     public ResponseEntity<Article> saveArticle(@RequestBody ArticleDto articleDto) {
         Article article = service.createArticle(articleDto);
         return ResponseEntity.ok(article);
+    }
+
+    @DeleteMapping("/api/articles/{id}")
+    public ResponseEntity<Void> deleteArticle(@PathVariable Long id) {
+        boolean deleted = service.deleteArticle(id);
+        if (deleted) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

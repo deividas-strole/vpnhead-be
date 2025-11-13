@@ -39,4 +39,12 @@ public class ArticleService {
         article.setImageUrl(articleDto.getImageUrl());
         return repository.save(article);
     }
+
+    public boolean deleteArticle(Long id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
 }
