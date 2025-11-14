@@ -21,7 +21,7 @@ public class AdminController {
         this.articleRepository = articleRepository;
     }
 
-    // ✅ Optional: A quick check for frontend to confirm token is still valid
+    // ✅ Optional: A quick check for frontend to confirm token is still valid //
     @GetMapping("/ping")
     public ResponseEntity<String> ping() {
         return ResponseEntity.ok("JWT token is valid");
